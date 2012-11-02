@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">Calc</string>    
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Калькулятор</string>
+    <string name="calc">Calculator</string>
+    <string name="view">0</string>
+
+</resources>
