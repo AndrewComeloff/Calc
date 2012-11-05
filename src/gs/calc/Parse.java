@@ -69,9 +69,18 @@ public class Parse {
 					
 //				}
 				
-			}			
+			}	
+			
+			equation = Logic.make();
+		
+			while (equation.indexOf('.') != -1 && equation.endsWith("0")) {
+				equation = equation.subSequence(0, equation.length()-1).toString();						
+			}
+			if (equation.endsWith(".")){
+				equation = equation.subSequence(0, equation.length()-1).toString();
+			}
 
-			return Logic.make();
+			return equation;
 	}
 	
 	void removeZero (){

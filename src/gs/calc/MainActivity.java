@@ -1,7 +1,6 @@
 package gs.calc;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -31,16 +30,13 @@ public class MainActivity extends Activity implements OnClickListener {
 	final String CAUNT_BRACKET_R = "caunt_bracket_r";
 	final String RESULT_BAK = "bak_result";
 	
-	Animation anim;
+	public static String num, numLast;
+	String bak = "";
 	
+	boolean dot = false;
 	
-//	Vibrator vibr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-	long vibrMS = 15;
-	
+//	int style = R.layout.main;
 
-//	static boolean unnecessary = false; // лишний мат. знак
-//	static boolean make = false; //  действие после равно
-//	static boolean zero = false; //  для блокировке лишних нулей в начале числа
 	
 	int bracketL, bracketR = 0;
 
@@ -52,11 +48,11 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	ScrollView vScroll;
 //	HorizontalScrollView hScroll;
-
-	public static String num, numLast;
-	String bak = "";
 	
-	int style = R.layout.main;
+//	Vibrator vibr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+	final long vibrMS = 15; // продолжительность вибро
+
+
 
 
 	@Override
@@ -107,6 +103,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		
 		// Анимация 
+		Animation anim; 
+//		Animation animCombo;
+		
 		anim = AnimationUtils.loadAnimation(this, R.anim.anim_1);
 		btn0.startAnimation(anim);
 		anim = AnimationUtils.loadAnimation(this, R.anim.anim_2);
@@ -147,6 +146,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		btnCancle.startAnimation(anim);
 		anim = AnimationUtils.loadAnimation(this, R.anim.anim_20);
 		btnBackspace.startAnimation(anim);
+		
+//		animCombo = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
 		
 
 		tvResult = (TextView) findViewById(R.id.tvResult);
@@ -239,10 +240,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btnDot:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
-			if (num == null) {
+			String res = tvResult.getText().toString();
+			if (res.endsWith("+") || res.endsWith("-")|| res.endsWith("x")|| res.endsWith("/")|| res.endsWith("(") || res.length() == 0) {
 				viewNumber("0");
 			}
-			viewNumber(".");
+			if (!dot){
+				viewNumber(".");
+				dot = true;
+			}			
+							
 			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
 			btnDot.startAnimation(anim);
 			break;
@@ -264,8 +270,12 @@ public class MainActivity extends Activity implements OnClickListener {
 			scrollDown();
 			anim = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
 			tvResult.startAnimation(anim);	
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnMake.startAnimation(anim);
+			
+			btnMake.startAnimation(anim_combo);	
+			dot = false;
+			if (tvResult.getText().toString().endsWith("ноль")){
+				tvResult.startAnimation(anim);
+			}
 			break;
 		case R.id.btnMultiply:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
@@ -301,7 +311,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			tvRes = tvResult.getText().toString();
 			if (tvRes.length() == 1 && tvRes.endsWith("-") == true){
 				return;
-			}			
+			}
+			if (tvRes.length()>1){
+				if (tvRes.charAt(tvRes.length()-2) == 'x' || tvRes.charAt(tvRes.length()-2) == '/'
+						|| tvRes.charAt(tvRes.length()-2) == '+'|| tvRes.charAt(tvRes.length()-2) == '-'){
+					return;
+				}
+			}
 			if(tvRes.endsWith("+") || tvRes.endsWith("-") || tvRes.endsWith("(") || 
 					tvRes.endsWith("x") || tvRes.endsWith("/") == true || tvRes.length() == 0){
 				tvResult.setText(tvResult.getText() + "(");
@@ -402,11 +418,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 				backspace();  			    
 			}
-//			if (tvRes.charAt(tvRes.length()-2) == '('){
-//				backspace();
-//			}
 		}
 		tvResult.setText(tvResult.getText() + v);
+		dot = false;
 		scrollDown();
 		num = null;
 //		make = false;
@@ -414,7 +428,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 	
 	void dot(){ // добавляет ноль после дроби, если не поставлено значение после запятой
-		if (numLast == "."){
+		String res = tvResult.getText().toString();
+		if (res.endsWith(".")){
 			tvResult.setText(tvResult.getText() + "0");			
 		}
 	}
@@ -426,6 +441,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		}	
 		if (val.endsWith("(") == true){
 			bracketL--;
+		}
+		if (val.endsWith(".") == true){
+			dot = false;
 		}
 		
 		if(val.length() < 1){
@@ -443,6 +461,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		bracketL = 0; 
 		bracketR = 0;
 		bak = "";
+		dot = false;
 	}
 
 	void scrollDown() {
@@ -481,7 +500,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			finish();
 			break;
 		case MENU_WHITE_ID:
-			style = R.layout.main;
+//			style = R.layout.main;
 			onCreate(null);	
 			break;
 		case MENU_BLACK_ID:
