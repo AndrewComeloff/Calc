@@ -1,5 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/skull"
+    style="@color/Black"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@drawable/skull" >
+
+<LinearLayout 
+    
+    android:id="@+id/bg"
     style="@color/Black"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -235,4 +245,9 @@
         </TableRow>
     </TableLayout>
 
+    
+    
+
 </LinearLayout>
+
+</RelativeLayout>

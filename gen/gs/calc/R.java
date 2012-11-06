@@ -31,6 +31,7 @@ public final class R {
         public static final int anim_9=0x7f040013;
         public static final int anim_combo=0x7f040014;
         public static final int anim_rotate=0x7f040015;
+        public static final int anim_skull=0x7f040016;
     }
     public static final class attr {
     }
@@ -115,36 +116,39 @@ public final class R {
         public static final int button_selector=0x7f020044;
         public static final int ic_action_search=0x7f020045;
         public static final int ic_launcher=0x7f020046;
+        public static final int skull=0x7f020047;
     }
     public static final class id {
-        public static final int btn0=0x7f0a0017;
-        public static final int btn1=0x7f0a0012;
-        public static final int btn2=0x7f0a0013;
-        public static final int btn3=0x7f0a0014;
-        public static final int btn4=0x7f0a000d;
-        public static final int btn5=0x7f0a000e;
-        public static final int btn6=0x7f0a000f;
-        public static final int btn7=0x7f0a0008;
-        public static final int btn8=0x7f0a0009;
-        public static final int btn9=0x7f0a000a;
-        public static final int btnBackspace=0x7f0a0006;
-        public static final int btnBracketL=0x7f0a0004;
-        public static final int btnBracketR=0x7f0a0005;
-        public static final int btnCancle=0x7f0a0003;
-        public static final int btnDivide=0x7f0a000b;
-        public static final int btnDot=0x7f0a0018;
-        public static final int btnMake=0x7f0a001a;
-        public static final int btnMultiply=0x7f0a0010;
-        public static final int btnPlus=0x7f0a0019;
-        public static final int btnSubtraction=0x7f0a0015;
-        public static final int menu_settings=0x7f0a001b;
-        public static final int tableRow1=0x7f0a0002;
-        public static final int tableRow2=0x7f0a0007;
-        public static final int tableRow3=0x7f0a000c;
-        public static final int tableRow4=0x7f0a0011;
-        public static final int tableRow5=0x7f0a0016;
-        public static final int tvResult=0x7f0a0001;
-        public static final int vScroll=0x7f0a0000;
+        public static final int bg=0x7f0a0001;
+        public static final int btn0=0x7f0a0019;
+        public static final int btn1=0x7f0a0014;
+        public static final int btn2=0x7f0a0015;
+        public static final int btn3=0x7f0a0016;
+        public static final int btn4=0x7f0a000f;
+        public static final int btn5=0x7f0a0010;
+        public static final int btn6=0x7f0a0011;
+        public static final int btn7=0x7f0a000a;
+        public static final int btn8=0x7f0a000b;
+        public static final int btn9=0x7f0a000c;
+        public static final int btnBackspace=0x7f0a0008;
+        public static final int btnBracketL=0x7f0a0006;
+        public static final int btnBracketR=0x7f0a0007;
+        public static final int btnCancle=0x7f0a0005;
+        public static final int btnDivide=0x7f0a000d;
+        public static final int btnDot=0x7f0a001a;
+        public static final int btnMake=0x7f0a001c;
+        public static final int btnMultiply=0x7f0a0012;
+        public static final int btnPlus=0x7f0a001b;
+        public static final int btnSubtraction=0x7f0a0017;
+        public static final int menu_settings=0x7f0a001d;
+        public static final int skull=0x7f0a0000;
+        public static final int tableRow1=0x7f0a0004;
+        public static final int tableRow2=0x7f0a0009;
+        public static final int tableRow3=0x7f0a000e;
+        public static final int tableRow4=0x7f0a0013;
+        public static final int tableRow5=0x7f0a0018;
+        public static final int tvResult=0x7f0a0003;
+        public static final int vScroll=0x7f0a0002;
     }
     public static final class layout {
         public static final int main=0x7f030000;

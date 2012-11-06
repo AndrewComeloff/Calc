@@ -13,6 +13,8 @@ import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +38,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	boolean dot = false;
 	
 //	int style = R.layout.main;
-
+	Animation anim; 
+	Animation animCombo;
 	
 	int bracketL, bracketR = 0;
 
@@ -47,7 +50,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	static TextView tvResult;
 
 	ScrollView vScroll;
-//	HorizontalScrollView hScroll;
+	
+	LinearLayout bgLayout;
+	RelativeLayout skullLayout;
 	
 //	Vibrator vibr = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 	final long vibrMS = 15; // продолжительность вибро
@@ -103,8 +108,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		
 		// Анимация 
-		Animation anim; 
-//		Animation animCombo;
+		
+		animCombo = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
 		
 		anim = AnimationUtils.loadAnimation(this, R.anim.anim_1);
 		btn0.startAnimation(anim);
@@ -146,15 +151,14 @@ public class MainActivity extends Activity implements OnClickListener {
 		btnCancle.startAnimation(anim);
 		anim = AnimationUtils.loadAnimation(this, R.anim.anim_20);
 		btnBackspace.startAnimation(anim);
-		
-//		animCombo = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-		
+				
 
 		tvResult = (TextView) findViewById(R.id.tvResult);
-//		tvListNumber = (TextView)findViewById(R.id.tvListNumber);
-//		tvListArifmetical = (TextView)findViewById(R.id.tvListArifmetical);
 
 		vScroll = (ScrollView) findViewById(R.id.vScroll);
+		
+		bgLayout = (LinearLayout)findViewById(R.id.bg);
+		skullLayout = (RelativeLayout)findViewById(R.id.skull);
 		
 		loadText();
 	}
@@ -171,72 +175,61 @@ public class MainActivity extends Activity implements OnClickListener {
 				return;
 			}				
 			viewNumber("0");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn0.startAnimation(anim);
+			btn0.startAnimation(animCombo);
 			
 //			vibr.vibrate(50);
 			break;
 		case R.id.btn1:	
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			viewNumber("1");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn1.startAnimation(anim);	
+			btn1.startAnimation(animCombo);	
 			break;
 		case R.id.btn2:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			viewNumber("2");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn2.startAnimation(anim);	
+			btn2.startAnimation(animCombo);	
 			break;
 		case R.id.btn3:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			viewNumber("3");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn3.startAnimation(anim);	
+			btn3.startAnimation(animCombo);	
 			break;
 		case R.id.btn4:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			viewNumber("4");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn4.startAnimation(anim);	
+			btn4.startAnimation(animCombo);	
 			break;
 		case R.id.btn5:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
-			viewNumber("5");			
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn5.startAnimation(anim);			
+			viewNumber("5");
+			btn5.startAnimation(animCombo);			
 			break;
 		case R.id.btn6:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			viewNumber("6");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn6.startAnimation(anim);	
+			btn6.startAnimation(animCombo);	
 			break;
 		case R.id.btn7:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			viewNumber("7");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn7.startAnimation(anim);	
+			btn7.startAnimation(animCombo);	
 			break;
 		case R.id.btn8:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			viewNumber("8");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn8.startAnimation(anim);	
+			btn8.startAnimation(animCombo);	
 			break;
 		case R.id.btn9:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			viewNumber("9");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btn9.startAnimation(anim);	
+			btn9.startAnimation(animCombo);	
 			break;
 		case R.id.btnCancle:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			reset();
 			tvResult.setText("");
 			Logic.listDel();
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnCancle.startAnimation(anim);
+			btnCancle.startAnimation(animCombo);
 			break;
 		case R.id.btnDot:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
@@ -249,15 +242,14 @@ public class MainActivity extends Activity implements OnClickListener {
 				dot = true;
 			}			
 							
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnDot.startAnimation(anim);
+			btnDot.startAnimation(animCombo);
 			break;
 		case R.id.btnMake:
-			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
+			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(150);
 			dot();
 			tvRes = tvResult.getText().toString();
 			if (tvRes.endsWith("+") || tvRes.endsWith("-") || tvRes.endsWith("(") || 
-					tvRes.endsWith("x") || tvRes.endsWith("/") == true){
+					tvRes.endsWith("x") || tvRes.endsWith("/") || tvResult.length() < 1){
 				break;
 			}
 			while (bracketL > bracketR) {
@@ -268,42 +260,48 @@ public class MainActivity extends Activity implements OnClickListener {
 			Bracket.bracket(tvResult.getText().toString()) + "</br></b></font>", null, null));
 			bak = tvResult.getText().toString();
 			scrollDown();
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
-			tvResult.startAnimation(anim);	
 			
-			btnMake.startAnimation(anim_combo);	
+			btnMake.startAnimation(animCombo);	
 			dot = false;
 			if (tvResult.getText().toString().endsWith("ноль")){
-				tvResult.startAnimation(anim);
+				anim = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
+				bgLayout.startAnimation(anim);
+				anim = AnimationUtils.loadAnimation(this, R.anim.anim_skull);
+				skullLayout.startAnimation(anim);
+				reset();
+				tvResult.setText(null);
+				int dot = 200;      // Length of a Morse Code "dot" in milliseconds
+				int dash = 500;     // Length of a Morse Code "dash" in milliseconds
+				int short_gap = 200;    // Length of Gap Between dots/dashes
+				int medium_gap = 500;   // Length of Gap Between Letters
+				int long_gap = 10;    // Length of Gap Between Words
+				long[] pattern = {
+				    0,  // Start immediately
+				    dot, short_gap, dot, short_gap, dot,    
+				    medium_gap, dash, long_gap, medium_gap
+				};
+				((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(pattern, -1);
 			}
 			break;
 		case R.id.btnMultiply:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
-//			tvResult.setText(tvResult.getText() + "x");
 			viewArfmetical("x");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnMultiply.startAnimation(anim);
+			btnMultiply.startAnimation(animCombo);
 			break;
 		case R.id.btnDivide:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
-//			tvResult.setText(tvResult.getText() + "/");
 			viewArfmetical("/");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnDivide.startAnimation(anim);
+			btnDivide.startAnimation(animCombo);
 			break;
 		case R.id.btnPlus:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
-//			tvResult.setText(tvResult.getText() + "+");
 			viewArfmetical("+");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnPlus.startAnimation(anim);
+			btnPlus.startAnimation(animCombo);
 			break;
 		case R.id.btnSubtraction:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
-//			tvResult.setText(tvResult.getText() + "-");
 			viewArfmetical("-");
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnSubtraction.startAnimation(anim);
+			btnSubtraction.startAnimation(animCombo);
 			break;
 		case R.id.btnBracketL:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
@@ -323,8 +321,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				tvResult.setText(tvResult.getText() + "(");
 				bracketL++;				
 			}
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnBracketL.startAnimation(anim);
+			btnBracketL.startAnimation(animCombo);
 			break;			
 		case R.id.btnBracketR:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
@@ -339,15 +336,13 @@ public class MainActivity extends Activity implements OnClickListener {
 				bracketR++;					
 								
 			}
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnBracketR.startAnimation(anim);
+			btnBracketR.startAnimation(animCombo);
 				break;
 		case R.id.btnBackspace:
 			((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibrMS);
 			scrollDown();
 			backspace();
-			anim = AnimationUtils.loadAnimation(this, R.anim.anim_combo);
-			btnBackspace.startAnimation(anim);
+			btnBackspace.startAnimation(animCombo);
 			break;
 //			}
 		}
